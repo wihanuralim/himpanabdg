@@ -4,39 +4,60 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
 
-    <section class="content">
-        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Input Surat Keluar</button>
-        <div class="col-lg">
-            <?= $this->session->flashdata('message'); ?>
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Input Surat Keluar</button>
+    <div class="col-lg">
+        <?= $this->session->flashdata('message'); ?>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">SURAT KELUAR</h6>
         </div>
-        <table class="table">
-            <tr>
-                <th>Nomor Surat</th>
-                <th>Perihal</th>
-                <th>Tgl Surat</th>
-                <th>Tgl Terima</th>
-                <th>Biaya Kierim</th>
-                <th colspan="5">Aksi</th>
-            </tr>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr align="center">
+                            <th>#</th>
+                            <th>No Surat</th>
+                            <th>Perihal </th>
+                            <th>Tgl Surat</th>
+                            <th>Tgl Kirim</th>
+                            <th>Biaya Kirim</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; ?>
+                        <?php foreach ($surat_keluar as $sk) : ?>
+                            <tr>
+                                <td align="center"><?= $i; ?></td>
+                                <td><?php echo $sk->nomor_surat ?></td>
+                                <td><?php echo $sk->perihal ?></td>
+                                <td><?php echo $sk->tgl_surat ?></td>
+                                <td><?php echo $sk->tgl_kirim ?></td>
+                                <td><?php echo $sk->biaya_kirim ?></td>
+                                <td align="center">
 
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <a class="dropdown-item" href="<?= base_url('suratkeluar/detail/' . $sk->idsk); ?>">Detail</a>
+                                            <a class="dropdown-item" href="<?= base_url('suratkeluar/edit/' . $sk->idsk); ?>">Edit</a>
+                                            <a class="dropdown-item" href="<?= base_url('suratkeluar/hapus/' . $sk->idsk); ?>">Hapus</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
 
-            <?php
-            foreach ($surat_keluar as $sk) : ?>
-                <tr>
-
-                    <td><?php echo $sk->nomor_surat ?></td>
-                    <td><?php echo $sk->perihal ?></td>
-                    <td><?php echo $sk->tgl_surat ?></td>
-                    <td><?php echo $sk->tgl_kirim ?></td>
-                    <td><?php echo $sk->biaya_kirim ?></td>
-                    <td><?php echo anchor('suratkeluar/detail/' . $sk->idsk, '<div class="btn btn-success btn-sm"><i class="fa fa-search-plus"></i></div>') ?></td>
-                    <td onclick="javascript : return confirm('Yakin ingin anda hapus?')"><?php echo anchor('suratkeluar/hapus/' . $sk->idsk, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
-                    <td><?php echo anchor('suratkeluar/edit/' . $sk->idsk, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
-
-
-                <?php endforeach; ?>
-        </table>
-    </section>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- /.container-fluid -->
