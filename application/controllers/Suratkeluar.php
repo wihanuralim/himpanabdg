@@ -32,6 +32,7 @@ class Suratkeluar extends CI_Controller
         $tgl_kirim          = $this->input->post('tgl_kirim');
         $biaya_kirim        = $this->input->post('biaya_kirim');
         $surat              = $_FILES['surat'];
+
         if ($surat = '') {
         } else {
             $config['upload_path']         = './assets/img/suratkeluar';
