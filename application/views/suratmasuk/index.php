@@ -102,10 +102,10 @@
                     <input type="file" name="surat" class="form-control">
                 </div>
 
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label>Lampiran</label>
-                    <input type="file" name="lampiran[]" class="form-control" multiple>
-                </div> -->
+                    <input type="file" name="lampiran" class="form-control">
+                </div>
 
                 <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>

@@ -39,18 +39,20 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-2">Picture</div>
+                    <div class="col-sm-2">Surat</div>
                     <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="<?= base_url('assets/img/suratmasuk/') . $sm->surat; ?>" class="img-thumbnail">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="surat" name="surat">
-                                    <label class="custom-file-label" for="surat">Choose file</label>
-                                </div>
-                            </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="surat" name="surat">
+                            <label class="custom-file-label" for="surat"><?= $sm->surat ?></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">Lampiran</div>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="lampiran" name="lampiran">
+                            <label class="custom-file-label" for="surat"><?= $sm->lampiran ?></label>
                         </div>
                     </div>
                 </div>

@@ -41,23 +41,25 @@
                 <div class="form-group row">
                     <label for="biaya_kirim" class="col-sm-2 col-form-label">Biaya Kirim</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="biaya_kirim" name="biaya_kirim" value="<?= $sk->biaya_kirim ?>" >
+                        <input type="number" class="form-control" id="biaya_kirim" name="biaya_kirim" value="<?= $sk->biaya_kirim ?>">
                         <?= form_error('biaya_kirim', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-2">Picture</div>
+                    <div class="col-sm-2">Surat</div>
                     <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="<?= base_url('assets/img/suratkeluar/') . $sk->surat; ?>" class="img-thumbnail">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="surat" name="surat">
-                                    <label class="custom-file-label" for="surat">Choose file</label>
-                                </div>
-                            </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="surat" name="surat">
+                            <label class="custom-file-label" for="surat"><?= $sk->surat ?></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">Lampiran</div>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="lampiran" name="lampiran">
+                            <label class="custom-file-label" for="surat"><?= $sk->lampiran ?></label>
                         </div>
                     </div>
                 </div>

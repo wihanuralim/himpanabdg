@@ -34,8 +34,15 @@
                 </tr>
 
                 <tr>
+                    <th>Surat</th>
                     <td>
-                        <img src="<?php echo base_url(); ?>assets/img/suratkeluar/<?php echo $detail->surat; ?>" width"180" height="220">
+                        <embed width="800" height="400" src="<?php echo base_url(); ?>assets/img/suratkeluar/<?php echo $detail->surat; ?>" type="application/pdf"></embed>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lampiran</th>
+                    <td>
+                        <embed width="800" height="400" src="<?php echo base_url(); ?>assets/img/suratkeluar/<?php echo $detail->lampiran; ?>" type="application/pdf"></embed>
                     </td>
                     <td></td>
                 </tr>

@@ -32,11 +32,14 @@ class Suratkeluar extends CI_Controller
         $tgl_kirim          = $this->input->post('tgl_kirim');
         $biaya_kirim        = $this->input->post('biaya_kirim');
         $surat              = $_FILES['surat'];
+        $lampiran              = $_FILES['lampiran'];
+        $config['max_size']     = '10000';
+
 
         if ($surat = '') {
         } else {
             $config['upload_path']         = './assets/img/suratkeluar';
-            $config['allowed_types']    = 'jpg|png|gif';
+            $config['allowed_types']    = 'pdf';
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('surat')) {
@@ -47,6 +50,22 @@ class Suratkeluar extends CI_Controller
             }
         }
 
+        if ($lampiran = '') {
+        } else {
+            $config['upload_path']         = './assets/img/suratkeluar/';
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']     = '10000';
+
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('lampiran')) {
+                echo "Upload Gagal";
+                die();
+            } else {
+                $lampiran = $this->upload->data('file_name');
+            }
+        }
+
 
         $data = array(
             'nomor_surat'        => $nomor_surat,
@@ -54,7 +73,8 @@ class Suratkeluar extends CI_Controller
             'tgl_surat'          => $tgl_surat,
             'tgl_kirim'          => $tgl_kirim,
             'biaya_kirim'        => $biaya_kirim,
-            'surat'              => $surat
+            'surat'              => $surat,
+            'lampiran'           => $lampiran
 
         );
 
@@ -138,8 +158,8 @@ class Suratkeluar extends CI_Controller
 
             if ($upload_image) {
                 $config['upload_path'] = './assets/img/suratkeluar/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']     = '3000';
+                $config['allowed_types'] = 'pdf';
+                $config['max_size']     = '10000';
 
                 $this->load->library('upload', $config);
 
@@ -152,6 +172,30 @@ class Suratkeluar extends CI_Controller
 
                     $new_image = $this->upload->data('file_name');
                     $this->db->set('surat', $new_image);
+                    // $data['surat'] = $new_image;
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $upload_image = $_FILES['lampiran']['name'];
+
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/suratkeluar/';
+                $config['allowed_types'] = 'pdf';
+                $config['max_size']     = '10000';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('lampiran')) {
+                    $old_image = $data['surat_keluar']['lampiran'];
+
+                    if ($old_image != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/suratkeluar/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('lampiran', $new_image);
                     // $data['surat'] = $new_image;
                 } else {
                     echo $this->upload->display_errors();

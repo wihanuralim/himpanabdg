@@ -72,19 +72,19 @@ class Iuran extends CI_Controller
     public function update()
     {
 
-        $id = $this->input->post('id');
-        $nopen    = $this->input->post('nopen');
-        $nama         = $this->input->post('nama');
-        $tgl_pembayaran         = $this->input->post('tgl_pembayaran');
-        $jmlh_bayar     = $this->input->post('jmlh_bayar');
-        $bln_lunas     = $this->input->post('bln_lunas');
+        $id                 = $this->input->post('id');
+        $nopen              = $this->input->post('nopen');
+        $nama               = $this->input->post('nama');
+        $tgl_pembayaran     = $this->input->post('tgl_pembayaran');
+        $jmlh_bayar         = $this->input->post('jmlh_bayar');
+        $bln_lunas          = $this->input->post('bln_lunas');
 
 
         $data = array(
-            'nopen'        => $nopen,
-            'nama'            => $nama,
-            'tgl_pembayaran'            => $tgl_pembayaran,
-            'jmlh_bayar'        => $jmlh_bayar,
+            'nopen'            => $nopen,
+            'nama'             => $nama,
+            'tgl_pembayaran'   => $tgl_pembayaran,
+            'jmlh_bayar'       => $jmlh_bayar,
             'bln_lunas'        => $bln_lunas,
         );
 

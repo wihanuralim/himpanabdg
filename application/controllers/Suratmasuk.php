@@ -31,11 +31,15 @@ class Suratmasuk extends CI_Controller
         $tgl_surat         = $this->input->post('tgl_surat');
         $tgl_terima     = $this->input->post('tgl_terima');
         $surat             = $_FILES['surat'];
+        $lampiran             = $_FILES['lampiran'];
+
 
         if ($surat = '') {
         } else {
             $config['upload_path']         = './assets/img/suratmasuk';
-            $config['allowed_types']    = 'jpg|png|gif';
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']     = '10000';
+
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('surat')) {
@@ -47,8 +51,21 @@ class Suratmasuk extends CI_Controller
         }
 
 
+        if ($lampiran = '') {
+        } else {
+            $config['upload_path']         = './assets/img/suratmasuk/';
+            $config['allowed_types']    = 'pdf';
+            $config['max_size']     = '10000';
 
 
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('lampiran')) {
+                echo "Upload Gagal";
+                die();
+            } else {
+                $lampiran = $this->upload->data('file_name');
+            }
+        }
 
         $data = array(
             'nomor_surat'        => $nomor_surat,
@@ -56,6 +73,7 @@ class Suratmasuk extends CI_Controller
             'tgl_surat'          => $tgl_surat,
             'tgl_terima'         => $tgl_terima,
             'surat'              => $surat,
+            'lampiran'           => $lampiran
 
         );
 
@@ -131,12 +149,12 @@ class Suratmasuk extends CI_Controller
             );
 
 
-            //cek jika ada gambar yang di upload
+            //cek jika ada file yang di upload
             $upload_image = $_FILES['surat']['name'];
 
             if ($upload_image) {
                 $config['upload_path'] = './assets/img/suratmasuk/';
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'pdf';
                 $config['max_size']     = '3000';
 
                 $this->load->library('upload', $config);
@@ -150,6 +168,30 @@ class Suratmasuk extends CI_Controller
 
                     $new_image = $this->upload->data('file_name');
                     $this->db->set('surat', $new_image);
+                    // $data['surat'] = $new_image;
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $upload_image = $_FILES['lampiran']['name'];
+
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/suratmasuk/';
+                $config['allowed_types'] = 'pdf';
+                $config['max_size']     = '3000';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('lampiran')) {
+                    $old_image = $data['surat_masuk']['lampiran'];
+
+                    if ($old_image != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/suratmasuk/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('lampiran', $new_image);
                     // $data['surat'] = $new_image;
                 } else {
                     echo $this->upload->display_errors();
