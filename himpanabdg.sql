@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2019 at 05:57 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.0.15
+-- Generation Time: Apr 18, 2020 at 09:30 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `himpanabdg`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iuran_anggota`
+--
+
+CREATE TABLE `iuran_anggota` (
+  `id` int(11) NOT NULL,
+  `nopen` varchar(20) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `tgl_pembayaran` date NOT NULL,
+  `jmlh_bayar` int(15) NOT NULL,
+  `bln_lunas` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `iuran_anggota`
+--
+
+INSERT INTO `iuran_anggota` (`id`, `nopen`, `nama`, `tgl_pembayaran`, `jmlh_bayar`, `bln_lunas`) VALUES
+(1, '01-9-128345-10', 'wiha nur alim', '2020-01-09', 36000, '2020-02-29'),
+(3, '01-9-657876-12', 'abdul', '2020-01-11', 36000, '2020-01-10'),
+(4, '01-9-256798-11', 'rizky', '2020-02-05', 36000, '2020-04-03');
 
 -- --------------------------------------------------------
 
@@ -45,17 +71,8 @@ CREATE TABLE `pensiunan` (
 --
 
 INSERT INTO `pensiunan` (`id`, `nopen`, `namapensiun`, `tempat_lahir`, `tgl_lahir`, `alamat`, `kota_kab`, `tgl_pensiun`, `nohp`, `notelp`, `emailpen`) VALUES
-(3, '01-9-678234-11', 'albert sofyan drs', 'medan', '2019-12-26', 'Jl. Tubagus Ismail 8 Cigadung Komp. Griya VIII No 20 RT 03 RW 02 Sukamaju-Cibeunyingkaler', 'Bandung', '2019-12-26', '081234567890', '022-1235672', 'albert@email.com'),
-(4, '01-9-678234-10', 'wiha nur alim2', 'garut', '2019-12-20', 'Sukamaju', 'Kota Bandung', '2019-12-27', '081234567891', '022-1235672', 'wiha@mail.com'),
-(5, '01-9-678234-11', 'alberta', 'medana', '2019-12-19', 'sukoharjo789', 'Kota Bandung', '2019-12-18', '081234567890', '022-1235672', 'alberta@email.com'),
-(7, '01-9-678234-11', 'albert sofyan', 'tuji', '2019-12-27', 'n', 'Kota Bandung', '2019-12-27', '222', '111', 'albert@email.com'),
-(8, '55556', 'gggg', 'gudang', '2019-12-27', 'gggg', 'Kota Bandung', '0000-00-00', '', '', ''),
-(9, '01-9-678234-11', 'wiha', 'garut', '2019-12-27', 'ggggg', 'Kota Bandung', '0000-00-00', '', '', ''),
-(10, '2222', 'wiha nur alim', 'garut', '2019-12-19', 'kij', 'Kota Bandung', '2019-12-28', '081234567890', '', ''),
-(11, '01-9-678234-10', 'uwa', 'bi', '2019-12-19', 'hhh', 'Kota Bandung', '0000-00-00', '', '', ''),
-(12, '778877', 'ini', 'tuji', '2019-12-28', 'kkkk', 'Kota Bandung', '0000-00-00', '', '', ''),
-(13, '01-9-678234-11', 'df', '2dd', '2019-12-28', 'hj', 'Kota Bandung', '2019-12-26', '', '', ''),
-(14, '01-9-678234-11', 'wiha', 'medana', '2019-12-27', 'fghjgh', 'Sukabumi', '2019-12-27', '081234567891', '022-1235671', 'alberta@email.com');
+(2, '44444', 'ayu', 'garut', '2020-09-07', 'cikaso', 'bandung', '2020-09-08', '787877777', '666666', 'fg'),
+(16, '987678', 'Ana NY', 'garut', '2020-09-07', 'cikaso', 'bandung', '2020-09-08', '787877777', '666666', 'fg');
 
 -- --------------------------------------------------------
 
@@ -79,8 +96,8 @@ CREATE TABLE `surat_keluar` (
 --
 
 INSERT INTO `surat_keluar` (`idsk`, `nomor_surat`, `perihal`, `tgl_surat`, `tgl_kirim`, `surat`, `lampiran`, `biaya_kirim`) VALUES
-(1, 'aaaaa', 'aaaaa', '2019-12-03', '2019-12-04', 'back.png', '', 25000),
-(4, '096/hcb/xi/201', 'surat Dinas asli', '2019-12-25', '2019-12-25', 'gfhjk.png', '', 24000);
+(5, '001/HCB/VII/2020', 'Permohonan ruangan', '2020-01-17', '2020-01-17', '11)_INDIHOME.pdf', '010-Surat_Ijin_Jalan_Populasi_Yakes_Pertamina.pdf', 2000),
+(6, '002/HCB/I/2020', 'permohonan bantuan', '2020-01-17', '2020-01-17', '091-P02.pdf', '2056-4370-1-SM.pdf', 3000);
 
 -- --------------------------------------------------------
 
@@ -103,8 +120,8 @@ CREATE TABLE `surat_masuk` (
 --
 
 INSERT INTO `surat_masuk` (`idsm`, `nomor_surat`, `perihal`, `tgl_surat`, `tgl_terima`, `surat`, `lampiran`) VALUES
-(11, '099/HCB/XII/2019', 'anak kosan', '2019-12-24', '2019-12-24', '3646bfcd223595c6f8357fca019c4dcf.png', ''),
-(12, '092/HCB/XII/2019', 'surat Dinas', '2019-12-17', '2019-12-17', 'D.png', '');
+(20, '004/HCB/I/2020', 'permohonan bws', '2020-01-17', '2020-01-17', '091-P02.pdf', '11)_INDIHOME.pdf'),
+(21, '005/HCB/XII/2020', 'anak ayam sayur', '2020-01-17', '2020-01-17', 'Motode_1.pdf', 'File_16-Surat-Keterangan-Riset.pdf');
 
 -- --------------------------------------------------------
 
@@ -128,7 +145,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Wiha', 'wihanuralim74@gmail.com', 'wiha_nur_alim_17160062.jpg', '$2y$10$pIvZCl4tuq33HTvhJtxxyeB75WMTTHMItsZpcfBQMm3wfTBi7Z/Zq', 1, 1, 1575990612),
+(1, 'Wiha Nur Alim', 'wihanuralim74@gmail.com', 'wiha_nur_alim_17160062.jpg', '$2y$10$pIvZCl4tuq33HTvhJtxxyeB75WMTTHMItsZpcfBQMm3wfTBi7Z/Zq', 1, 1, 1575990612),
 (3, 'oces', 'himpana.bandung@yahoo.com', 'dd.jpg', '$2y$10$MjgL/fyEOj/QZ8ehu3rpUOvlrRuRuMLZLtC8Mvfg7hPX6QrxQVCjW', 2, 1, 1576061232);
 
 -- --------------------------------------------------------
@@ -150,10 +167,9 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (3, 2, 2),
-(12, 1, 2),
 (14, 2, 5),
-(16, 1, 5),
-(17, 1, 3);
+(21, 1, 5),
+(22, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -223,11 +239,19 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (7, 1, 'Role', 'admin/role', 'fas fa-fw fa-user-tie', 1),
 (8, 5, 'Surat Masuk', 'suratmasuk', 'fas fa-fw fa-envelope-open', 1),
 (9, 5, 'Surat Keluar', 'suratkeluar', 'fas fa-fw fa-envelope-square', 1),
-(10, 5, 'Pensiunan', 'pensiunan', 'fas fa-fw fa-book', 1);
+(10, 5, 'Pensiunan', 'pensiunan', 'fas fa-fw fa-book', 1),
+(11, 5, 'Iuran Anggota', 'iuran', 'fas fa-fw fa-money-check-alt', 1),
+(12, 5, 'Laporan', 'laporan', 'fas fa-fw fa-file-alt\"', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `iuran_anggota`
+--
+ALTER TABLE `iuran_anggota`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pensiunan`
@@ -282,45 +306,60 @@ ALTER TABLE `user_sub_menu`
 --
 
 --
+-- AUTO_INCREMENT for table `iuran_anggota`
+--
+ALTER TABLE `iuran_anggota`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `pensiunan`
 --
 ALTER TABLE `pensiunan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `surat_keluar`
 --
 ALTER TABLE `surat_keluar`
-  MODIFY `idsk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idsk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  MODIFY `idsm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idsm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
