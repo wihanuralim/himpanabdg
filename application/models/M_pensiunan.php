@@ -35,4 +35,23 @@ class M_pensiunan extends CI_Model
         $this->db->where('id', $where);
         $this->db->update($table, $data);
     }
+
+    function ambilNopen($cariNopen = "")
+    {
+        $this->db->select('id AS id, nopen AS nopen, namapensiun')
+            ->from('pensiunan')
+            ->where("nopen like '%" . $cariNopen . "%' ")
+            ->order_by('nopen');
+
+
+        $fetched_records = $this->db->get();
+        $nopens = $fetched_records->result_array();
+
+        $data = array();
+        foreach ($nopens as $nopen) {
+            $data[] = array("id" => $nopen['id'], "text" => $nopen['nopen'], "name" => $nopen['namapensiun']);
+        }
+
+        return $data;
+    }
 }

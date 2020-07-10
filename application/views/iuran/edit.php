@@ -27,7 +27,7 @@
                 <div class="form-group row">
                     <label for="tgl_pembayaran" class="col-sm-3 col-form-label">Tgl Bayar</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control" id="tgl_pembayaran" name="tgl_pembayaran" value="<?= $i->tgl_pembayaran ?>" required>
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_pembayaran" id="tgl_pembayaran" value="<?=  date("d/m/Y", strtotime($i->tgl_pembayaran)); ?>" required>
                         <?= form_error('tgl_pembayaran', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -39,10 +39,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="bln_lunas" class="col-sm-3 col-form-label">Tanggal Pensiun</label>
+                    <label for="bln_lunas" class="col-sm-3 col-form-label">Bulan Lunas</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control" id="bln_lunas" name="bln_lunas" value="<?= $i->bln_lunas ?>">
-                        <?= form_error('bln_lunas', '<small class="text-danger pl-3">', '</small>'); ?>
+                         <input data-provide="datepicker" placeholder="Bulan Lunas" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="bln_lunas" id="bln_lunas" value="<?= date("d/m/Y", strtotime($i->bln_lunas)); ?>" required>
                     </div>
                 </div>
                 <div class="form-grouf row justify-content-end">

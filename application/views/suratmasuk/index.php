@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
 
-    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Input Surat Masuk</button>
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Tambah Surat Masuk</button>
     <div class="col-lg">
         <?= $this->session->flashdata('message'); ?>
     </div>
@@ -22,27 +22,27 @@
                             <th>Perihal </th>
                             <th>Tgl Surat</th>
                             <th>Tgl Terima</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
                         <?php foreach ($surat_masuk as $sm) : ?>
-                            <tr>
+                            <tr align="center">
                                 <td align="center"><?= $i; ?></td>
                                 <td><?php echo $sm->nomor_surat ?></td>
                                 <td><?php echo $sm->perihal ?></td>
-                                <td><?php echo $sm->tgl_surat ?></td>
-                                <td><?php echo $sm->tgl_terima ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($sm->tgl_surat)); ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($sm->tgl_terima)); ?></td>
                                 <td align="center">
 
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Action
+                                            Aksi
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('suratmasuk/detail/' . $sm->idsm); ?>">Detail</a>
-                                            <a class="dropdown-item" href="<?= base_url('suratmasuk/edit/' . $sm->idsm); ?>">Edit</a>
+                                            <a class="dropdown-item" href="<?= base_url('suratmasuk/edit/' . $sm->idsm); ?>">Ubah</a>
                                             <a class="dropdown-item" href="<?= base_url('suratmasuk/hapus/' . $sm->idsm); ?>">Hapus</a>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">FORM INPUT SURAT MASUK</h4>
+                <h4 class="modal-title" id="exampleModalLabel">TAMBAH SURAT MASUK</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -78,23 +78,19 @@
                 <?php echo form_open_multipart('suratmasuk/tambah_aksi') ?>
 
                 <div class="form-group">
-                    <label>Nomor Surat</label>
-                    <input type="text" name="nomor_surat" class="form-control" required>
+                    <input type="text" name="nomor_surat" placeholder="Nomor Surat" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Perihal</label>
-                    <input type="text" name="perihal" class="form-control" required>
+                    <input type="text" name="perihal" placeholder="Perihal" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Tgl Surat</label>
-                    <input type="date" name="tgl_surat" class="form-control" required>
+                     <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_surat" id="tgl_surat" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Tgl Terima</label>
-                    <input type="date" name="tgl_terima" class="form-control" required>
+                    <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_terima" id="tgl_terima" required>
                 </div>
 
                 <div class="form-group">

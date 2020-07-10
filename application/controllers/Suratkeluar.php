@@ -26,41 +26,39 @@ class Suratkeluar extends CI_Controller
 
     public function tambah_aksi()
     {
-        $nomor_surat        = $this->input->post('nomor_surat');
-        $perihal            = $this->input->post('perihal');
-        $tgl_surat          = $this->input->post('tgl_surat');
-        $tgl_kirim          = $this->input->post('tgl_kirim');
-        $biaya_kirim        = $this->input->post('biaya_kirim');
-        $surat              = $_FILES['surat'];
-        $lampiran              = $_FILES['lampiran'];
-        $config['max_size']     = '10000';
+        $nomor_surat            = $this->input->post('nomor_surat');
+        $perihal                = $this->input->post('perihal');
+        $tgl_surat              = $this->input->post('tgl_surat');
+        $tgl_kirim              = $this->input->post('tgl_kirim');
+        $biaya_kirim            = $this->input->post('biaya_kirim');
 
 
-        if ($surat = '') {
-        } else {
-            $config['upload_path']         = './assets/img/suratkeluar';
+
+        if (!empty($_FILES['surat']['name'])) {
+            $config['upload_path']      = './assets/img/suratkeluar';
             $config['allowed_types']    = 'pdf';
+            $config['max_size']         = '10000';
+
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('surat')) {
-                echo "Upload Gagal";
-                die();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal!</div>');
+                redirect('suratkeluar/index');
             } else {
                 $surat = $this->upload->data('file_name');
             }
         }
 
-        if ($lampiran = '') {
-        } else {
-            $config['upload_path']         = './assets/img/suratkeluar/';
-            $config['allowed_types']    = 'pdf';
-            $config['max_size']     = '10000';
+        if (!empty($_FILES['lampiran']['name'])) {
+            $config['upload_path']          = './assets/img/suratkeluar/';
+            $config['allowed_types']        = 'pdf';
+            $config['max_size']             = '10000';
 
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('lampiran')) {
-                echo "Upload Gagal";
-                die();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal!</div>');
+                redirect('suratkeluar/index');
             } else {
                 $lampiran = $this->upload->data('file_name');
             }
@@ -70,8 +68,8 @@ class Suratkeluar extends CI_Controller
         $data = array(
             'nomor_surat'        => $nomor_surat,
             'perihal'            => $perihal,
-            'tgl_surat'          => $tgl_surat,
-            'tgl_kirim'          => $tgl_kirim,
+            'tgl_surat'          => date("Y-m-d", strtotime($tgl_surat)),
+            'tgl_kirim'          => date("Y-m-d", strtotime($tgl_kirim)),
             'biaya_kirim'        => $biaya_kirim,
             'surat'              => $surat,
             'lampiran'           => $lampiran
@@ -79,7 +77,7 @@ class Suratkeluar extends CI_Controller
         );
 
         $data['surat_keluar'] = $this->M_surat_keluar->input_data($data, 'surat_keluar');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Success Added Your Data!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan!</div>');
 
         redirect('suratkeluar/index');
     }
@@ -104,13 +102,13 @@ class Suratkeluar extends CI_Controller
     {
         $where = array('idsk' => $id);
         $this->M_surat_keluar->hapus_data($where, 'surat_keluar');
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delleted Success!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data berhasil dihapus!</div>');
         redirect('suratkeluar');
     }
 
     public function edit($id)
     {
-        $data['title'] = 'Edit Surat Keluar';
+        $data['title'] = 'Ubah Surat Keluar';
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -126,7 +124,7 @@ class Suratkeluar extends CI_Controller
 
     public function update()
     {
-        $data['title'] = 'Edit Surat Keluar';
+        $data['title'] = 'Ubah Surat Keluar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['surat_keluar'] = $this->db->get_where('surat_keluar')->row_array();
 
@@ -145,11 +143,11 @@ class Suratkeluar extends CI_Controller
         } else {
             $idsk = $this->input->post('idsk');
             $suratKeluar = array(
-                'nomor_surat' => $this->input->post('nomor_surat'),
-                'perihal' => $this->input->post('perihal'),
-                'tgl_surat' => $this->input->post('tgl_surat'),
-                'tgl_kirim' => $this->input->post('tgl_kirim'),
-                'biaya_kirim' => $this->input->post('biaya_kirim')
+                'nomor_surat'       => $this->input->post('nomor_surat'),
+                'perihal'           => $this->input->post('perihal'),
+                'tgl_surat'         => $this->input->post('tgl_surat'),
+                'tgl_kirim'         => $this->input->post('tgl_kirim'),
+                'biaya_kirim'       => $this->input->post('biaya_kirim')
             );
 
 
@@ -157,9 +155,9 @@ class Suratkeluar extends CI_Controller
             $upload_image = $_FILES['surat']['name'];
 
             if ($upload_image) {
-                $config['upload_path'] = './assets/img/suratkeluar/';
-                $config['allowed_types'] = 'pdf';
-                $config['max_size']     = '10000';
+                $config['upload_path']      = './assets/img/suratkeluar/';
+                $config['allowed_types']    = 'pdf';
+                $config['max_size']         = '10000';
 
                 $this->load->library('upload', $config);
 
@@ -181,9 +179,9 @@ class Suratkeluar extends CI_Controller
             $upload_image = $_FILES['lampiran']['name'];
 
             if ($upload_image) {
-                $config['upload_path'] = './assets/img/suratkeluar/';
-                $config['allowed_types'] = 'pdf';
-                $config['max_size']     = '10000';
+                $config['upload_path']      = './assets/img/suratkeluar/';
+                $config['allowed_types']    = 'pdf';
+                $config['max_size']         = '10000';
 
                 $this->load->library('upload', $config);
 
@@ -205,7 +203,7 @@ class Suratkeluar extends CI_Controller
             $this->db->where('idsk', $idsk);
             $this->db->update('surat_keluar', $suratKeluar);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been updated!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil diubah!</div>');
             redirect('suratkeluar');
         }
     }

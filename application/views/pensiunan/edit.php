@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?= $p->tgl_lahir ?>" required>
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_lahir" id="tgl_lahir" value="<?=  date("d/m/Y", strtotime($p->tgl_lahir)); ?>" required>
                         <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="form-group row">
                     <label for="tgl_pensiun" class="col-sm-3 col-form-label">Tanggal Pensiun</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control" id="tgl_pensiun" name="tgl_pensiun" value="<?= $p->tgl_pensiun ?>">
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_pensiun" id="tgl_pensiun" value="<?=  date("d/m/Y", strtotime($p->tgl_pensiun)); ?>" required>
                         <?= form_error('tgl_pensiun', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>

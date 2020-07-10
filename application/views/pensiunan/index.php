@@ -4,7 +4,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
 
     <!-- DataTales Example -->
-    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Input Anggota Baru</button>
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Tambah Anggota</button>
     <div class="col-lg">
         <?= $this->session->flashdata('message'); ?>
     </div>
@@ -22,7 +22,7 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>No Hp</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +38,11 @@
 
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Action
+                                            Aksi
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('pensiunan/detail/' . $p->id); ?>">Detail</a>
-                                            <a class="dropdown-item" href="<?= base_url('pensiunan/edit/' . $p->id); ?>">Edit</a>
+                                            <a class="dropdown-item" href="<?= base_url('pensiunan/edit/' . $p->id); ?>">Ubah</a>
                                             <a class="dropdown-item" href="<?= base_url('pensiunan/hapus/' . $p->id); ?>">Hapus</a>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">FORM DATA PENSIUNAN</h4>
+                <h4 class="modal-title" id="exampleModalLabel">TAMBAH DATA PENSIUNAN</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -83,7 +83,7 @@
                     <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" placeholder="Tempat Lahir" required>
                 </div>
                 <div class="form-group col-sm">
-                    <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" onfocus="(this.type='date')" required >
+                    <input data-provide="datepicker" placeholder="Tanggal Lahir" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_lahir" id="tgl_lahir" required>
                 </div>
                 <div class="form-group col-sm">
                     <textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat lengkap" required ></textarea>
@@ -107,7 +107,7 @@
                     </select>
                 </div>
                 <div class="form-group col-sm">
-                    <input type="text" name="tgl_pensiun" id="tgl_pensiun" class="form-control" placeholder="Tanggal Pensiun" onfocus="(this.type='date')">
+                     <input data-provide="datepicker" placeholder="Tanggal Pensiun" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_pensiun" id="tgl_pensiun" required>
                 </div>
                 <div class="form-group col-sm">
                     <input type="text" name="nohp" id="nohp" class="form-control" placeholder="Nomor Handphone">

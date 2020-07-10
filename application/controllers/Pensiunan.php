@@ -11,7 +11,7 @@ class Pensiunan extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Data Pensiunan';
+        $data['title'] = 'Pensiunan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['pensiunan'] = $this->M_pensiunan->tampil_data()->result();
 
@@ -24,35 +24,35 @@ class Pensiunan extends CI_Controller
     }
     public function tambah_aksi()
     {
-        $nopen    = $this->input->post('nopen');
-        $namapensiun         = $this->input->post('namapensiun');
-        $tempat_lahir         = $this->input->post('tempat_lahir');
-        $tgl_lahir     = $this->input->post('tgl_lahir');
-        $alamat     = $this->input->post('alamat');
-        $kota_kab     = $this->input->post('kota_kab');
-        $tgl_pensiun     = $this->input->post('tgl_pensiun');
-        $nohp     = $this->input->post('nohp');
-        $notelp     = $this->input->post('notelp');
-        $emailpen     = $this->input->post('emailpen');
+        $nopen                  = $this->input->post('nopen');
+        $namapensiun            = $this->input->post('namapensiun');
+        $tempat_lahir           = $this->input->post('tempat_lahir');
+        $tgl_lahir              = $this->input->post('tgl_lahir');
+        $alamat                 = $this->input->post('alamat');
+        $kota_kab               = $this->input->post('kota_kab');
+        $tgl_pensiun            = $this->input->post('tgl_pensiun');
+        $nohp                   = $this->input->post('nohp');
+        $notelp                 = $this->input->post('notelp');
+        $emailpen               = $this->input->post('emailpen');
 
 
 
         $data = array(
-            'nopen'        => $nopen,
-            'namapensiun'            => $namapensiun,
-            'tempat_lahir'            => $tempat_lahir,
-            'tgl_lahir'        => $tgl_lahir,
-            'alamat'        => $alamat,
-            'kota_kab'        => $kota_kab,
-            'tgl_pensiun'        => $tgl_pensiun,
-            'nohp'        => $nohp,
-            'notelp'        => $notelp,
-            'emailpen'        => $emailpen,
+            'nopen'             => $nopen,
+            'namapensiun'       => $namapensiun,
+            'tempat_lahir'      => $tempat_lahir,
+            'tgl_lahir'         => date("Y-m-d", strtotime($tgl_lahir)),
+            'alamat'            => $alamat,
+            'kota_kab'          => $kota_kab,
+            'tgl_pensiun'       => date("Y-m-d", strtotime($tgl_pensiun)),
+            'nohp'              => $nohp,
+            'notelp'            => $notelp,
+            'emailpen'          => $emailpen,
 
         );
 
         $this->M_pensiunan->input_data($data, 'pensiunan');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Success Added Your Data!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan!</div>');
 
         redirect('pensiunan/index');
     }
@@ -61,7 +61,7 @@ class Pensiunan extends CI_Controller
     {
         $where = array('id' => $id);
         $this->M_pensiunan->hapus_data($where, 'pensiunan');
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delleted Success!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data berhasil dihapus!</div>');
         redirect('pensiunan/index');
     }
 
@@ -85,37 +85,37 @@ class Pensiunan extends CI_Controller
     public function update()
     {
 
-        $id = $this->input->post('id');
-        $nopen    = $this->input->post('nopen');
-        $namapensiun         = $this->input->post('namapensiun');
-        $tempat_lahir         = $this->input->post('tempat_lahir');
-        $tgl_lahir     = $this->input->post('tgl_lahir');
-        $alamat     = $this->input->post('alamat');
-        $kota_kab     = $this->input->post('kota_kab');
-        $tgl_pensiun     = $this->input->post('tgl_pensiun');
-        $nohp     = $this->input->post('nohp');
-        $notelp     = $this->input->post('notelp');
-        $emailpen     = $this->input->post('emailpen');
+        $id                     = $this->input->post('id');
+        $nopen                  = $this->input->post('nopen');
+        $namapensiun            = $this->input->post('namapensiun');
+        $tempat_lahir           = $this->input->post('tempat_lahir');
+        $tgl_lahir              = $this->input->post('tgl_lahir');
+        $alamat                 = $this->input->post('alamat');
+        $kota_kab               = $this->input->post('kota_kab');
+        $tgl_pensiun            = $this->input->post('tgl_pensiun');
+        $nohp                   = $this->input->post('nohp');
+        $notelp                 = $this->input->post('notelp');
+        $emailpen               = $this->input->post('emailpen');
 
 
         $data = array(
-            'nopen'        => $nopen,
-            'namapensiun'            => $namapensiun,
-            'tempat_lahir'            => $tempat_lahir,
-            'tgl_lahir'        => $tgl_lahir,
-            'alamat'        => $alamat,
-            'kota_kab'        => $kota_kab,
-            'tgl_pensiun'        => $tgl_pensiun,
-            'nohp'        => $nohp,
-            'notelp'        => $notelp,
-            'emailpen'        => $emailpen
+            'nopen'             => $nopen,
+            'namapensiun'       => $namapensiun,
+            'tempat_lahir'      => $tempat_lahir,
+            'tgl_lahir'         => date("Y-m-d", strtotime($tgl_lahir)),
+            'alamat'            => $alamat,
+            'kota_kab'          => $kota_kab,
+            'tgl_pensiun'       => date("Y-m-d", strtotime($tgl_pensiun)),
+            'nohp'              => $nohp,
+            'notelp'            => $notelp,
+            'emailpen'          => $emailpen
 
         );
 
 
 
         $this->M_pensiunan->update_data($id, $data, 'pensiunan');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been updated!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil diubah!</div>');
 
         redirect('pensiunan/index');
     }
@@ -134,5 +134,15 @@ class Pensiunan extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('pensiunan/detail', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function getNopen()
+    {
+        $cariNopen = $this->input->post('cariNopen');
+
+        $response = $this->M_pensiunan->ambilNopen($cariNopen);
+
+
+        echo json_encode($response);
     }
 }

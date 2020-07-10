@@ -27,14 +27,14 @@
                 <div class="form-group row">
                     <label for="tgl_surat" class="col-sm-2 col-form-label">Tgl Surat</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_surat" name="tgl_surat" value="<?= $sk->tgl_surat ?>" required>
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="yyyy-mm-dd" name="tgl_surat" id="tgl_surat" value="<?=  date("Y/m/d", strtotime($sk->tgl_surat)); ?>" required>
                         <?= form_error('tgl_surat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tgl_kirim" class="col-sm-2 col-form-label">Tgl Kirim</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_kirim" name="tgl_kirim" value="<?= $sk->tgl_kirim ?>" required>
+                       <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="yyyy-mm-dd" name="tgl_kirim" id="tgl_kirim" value="<?=  date("Y/m/d", strtotime($sk->tgl_kirim)); ?>" required>
                         <?= form_error('tgl_kirim', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>

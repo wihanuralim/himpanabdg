@@ -26,52 +26,49 @@ class Suratmasuk extends CI_Controller
 
     public function tambah_aksi()
     {
-        $nomor_surat    = $this->input->post('nomor_surat');
-        $perihal         = $this->input->post('perihal');
-        $tgl_surat         = $this->input->post('tgl_surat');
-        $tgl_terima     = $this->input->post('tgl_terima');
-        $surat             = $_FILES['surat'];
-        $lampiran             = $_FILES['lampiran'];
+        $nomor_surat        = $this->input->post('nomor_surat');
+        $perihal            = $this->input->post('perihal');
+        $tgl_surat          = $this->input->post('tgl_surat');
+        $tgl_terima         = $this->input->post('tgl_terima');
 
-
-        if ($surat = '') {
-        } else {
-            $config['upload_path']         = './assets/img/suratmasuk';
-            $config['allowed_types']    = 'pdf';
-            $config['max_size']     = '10000';
+        if (!empty($_FILES['surat']['name'])) {
+            $config['upload_path']          = './assets/img/suratmasuk';
+            $config['allowed_types']        = 'pdf';
+            $config['max_size']             = '10000';
 
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('surat')) {
-                echo "Upload Gagal";
-                die();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal!</div>');
+                redirect('suratmasuk');
             } else {
                 $surat = $this->upload->data('file_name');
             }
         }
 
 
-        if ($lampiran = '') {
-        } else {
-            $config['upload_path']         = './assets/img/suratmasuk/';
-            $config['allowed_types']    = 'pdf';
-            $config['max_size']     = '10000';
+        if (!empty($_FILES['lampiran']['name'])) {
+            $config['upload_path']          = './assets/img/suratmasuk/';
+            $config['allowed_types']        = 'pdf';
+            $config['max_size']             = '10000';
 
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('lampiran')) {
-                echo "Upload Gagal";
-                die();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal!</div>');
+                redirect('suratmasuk/index');
             } else {
                 $lampiran = $this->upload->data('file_name');
             }
+        } else {
+            $lampiran = '';
         }
 
         $data = array(
             'nomor_surat'        => $nomor_surat,
             'perihal'            => $perihal,
-            'tgl_surat'          => $tgl_surat,
-            'tgl_terima'         => $tgl_terima,
+            'tgl_surat'          =>  date("Y-m-d", strtotime($tgl_surat)),
+            'tgl_terima'         => date("Y-m-d", strtotime($tgl_terima)),
             'surat'              => $surat,
             'lampiran'           => $lampiran
 
@@ -102,13 +99,13 @@ class Suratmasuk extends CI_Controller
     {
         $where = array('idsm' => $id);
         $this->M_surat_masuk->hapus_data($where, 'surat_masuk');
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delleted Success!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data berhasil dihapus!</div>');
         redirect('suratmasuk/index');
     }
 
     public function edit($id)
     {
-        $data['title'] = 'Edit Surat Masuk';
+        $data['title'] = 'Ubah Surat Masuk';
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -124,7 +121,7 @@ class Suratmasuk extends CI_Controller
 
     public function update()
     {
-        $data['title'] = 'Edit Surat Masuk';
+        $data['title'] = 'Ubah Surat Masuk';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['surat_masuk'] = $this->db->get_where('surat_masuk')->row_array();
 
@@ -201,7 +198,7 @@ class Suratmasuk extends CI_Controller
             $this->db->where('idsm', $idsm);
             $this->db->update('surat_masuk', $suratMasuk);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been updated!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil diubah!</div>');
             redirect('suratmasuk');
         }
     }

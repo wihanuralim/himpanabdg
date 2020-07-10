@@ -20,12 +20,12 @@
 
                 <tr>
                     <th>Tanggal Surat</th>
-                    <td><?php echo $detail->tgl_surat ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_surat)); ?></td>
                 </tr>
 
                 <tr>
                     <th>Tanggal Terima</th>
-                    <td><?php echo $detail->tgl_terima ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_terima)); ?></td>
                 </tr>
 
                 <tr>
@@ -37,7 +37,15 @@
                 <tr>
                     <th>Lampiran</th>
                     <td>
-                        <embed width="800" height="400" src="<?php echo base_url(); ?>assets/img/suratmasuk/<?php echo $detail->lampiran; ?>" type="application/pdf"></embed>
+                        <?php if ($detail->lampiran != '') { ?>
+                            <div>
+                                <embed width="800" height="400" src="<?php echo base_url(); ?>assets/img/suratmasuk/<?php echo $detail->lampiran; ?>" type="application/pdf"></embed>
+                            </div>
+                        <?php } else { ?>
+                            <div>
+                                Tidak ada lampiran.
+                            </div>
+                        <?php } ?>
                     </td>
                     <td></td>
                 </tr>

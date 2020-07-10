@@ -20,12 +20,12 @@
 
                 <tr>
                     <th>Tanggal Surat</th>
-                    <td><?php echo $detail->tgl_surat ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_surat)); ?></td>
                 </tr>
 
                 <tr>
                     <th>Tanggal Kirim</th>
-                    <td><?php echo $detail->tgl_kirim ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_kirim)); ?></td>
                 </tr>
 
                 <tr>

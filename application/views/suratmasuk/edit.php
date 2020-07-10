@@ -20,21 +20,21 @@
                 <div class="form-group row">
                     <label for="perihal" class="col-sm-2 col-form-label">Perihal</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="perihalt" name="perihal" value="<?= $sm->perihal ?>" required>
+                        <input type="text" class="form-control" id="perihal" name="perihal" value="<?= $sm->perihal ?>" required>
                         <?= form_error('perihal', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tgl_surat" class="col-sm-2 col-form-label">Tgl Surat</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_surat" name="tgl_surat" value="<?= $sm->tgl_surat ?>" required>
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="yyyy-mm-dd" name="tgl_surat" id="tgl_surat" value="<?=  date("Y/m/d", strtotime($sm->tgl_surat)); ?>" required>
                         <?= form_error('tgl_surat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tgl_terima" class="col-sm-2 col-form-label">Tgl Terima</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_terima" name="tgl_terima" value="<?= $sm->tgl_terima ?>" required>
+                        <input data-provide="datepicker" data-date-autoclose="true" class="form-control" data-date-format="yyyy-mm-dd" name="tgl_terima" id="tgl_terima" value="<?=  date("Y/m/d", strtotime($sm->tgl_terima)); ?>" required>
                         <?= form_error('tgl_terima', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>

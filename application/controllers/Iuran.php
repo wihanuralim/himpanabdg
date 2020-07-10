@@ -24,22 +24,22 @@ class Iuran extends CI_Controller
     }
     public function tambah_aksi()
     {
-        $nopen    = $this->input->post('nopen');
-        $nama         = $this->input->post('nama');
-        $tgl_pembayaran         = $this->input->post('tgl_pembayaran');
-        $jmlh_bayar     = $this->input->post('jmlh_bayar');
-        $bln_lunas     = $this->input->post('bln_lunas');
+        $nopen              = $this->input->post('nopen');
+        $nama               = $this->input->post('nama');
+        $tgl_pembayaran     = $this->input->post('tgl_pembayaran');
+        $jmlh_bayar         = $this->input->post('jmlh_bayar');
+        $bln_lunas          = $this->input->post('bln_lunas');
 
         $data = array(
-            'nopen'        => $nopen,
-            'nama'            => $nama,
-            'tgl_pembayaran'            => $tgl_pembayaran,
+            'nopen'             => $nopen,
+            'nama'              => $nama,
+            'tgl_pembayaran'    => date("Y-m-d", strtotime($tgl_pembayaran)),
             'jmlh_bayar'        => $jmlh_bayar,
-            'bln_lunas'        => $bln_lunas,
+            'bln_lunas'         => date("Y-m-d", strtotime($bln_lunas)),
         );
 
         $this->M_iuran->input_data($data, 'iuran');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Success Added Your Data!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan!</div>');
 
         redirect('iuran/index');
     }
@@ -48,13 +48,13 @@ class Iuran extends CI_Controller
     {
         $where = array('id' => $id);
         $this->M_iuran->hapus_data($where, 'iuran_anggota');
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delleted Success!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data berhasil di hapus!</div>');
         redirect('iuran/index');
     }
 
     public function edit($id)
     {
-        $data['title'] = 'Edit Data Iuran';
+        $data['title'] = 'Ubah Data Iuran';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $where = array('id' => $id);
@@ -83,15 +83,15 @@ class Iuran extends CI_Controller
         $data = array(
             'nopen'            => $nopen,
             'nama'             => $nama,
-            'tgl_pembayaran'   => $tgl_pembayaran,
+            'tgl_pembayaran'   => date("Y-m-d", strtotime($tgl_pembayaran)),
             'jmlh_bayar'       => $jmlh_bayar,
-            'bln_lunas'        => $bln_lunas,
+            'bln_lunas'        => date("Y-m-d", strtotime($bln_lunas)),
         );
 
 
 
         $this->M_iuran->update_data($id, $data, 'iuran_anggota');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been updated!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di ubah!</div>');
 
         redirect('iuran/index');
     }

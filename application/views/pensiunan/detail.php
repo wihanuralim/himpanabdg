@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <th>Tanggal Lahir</th>
-                    <td><?php echo $detail->tgl_lahir ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_lahir)); ?></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <th>Tanggal Pensiun</th>
-                    <td><?php echo $detail->tgl_pensiun ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($detail->tgl_pensiun)); ?></td>
                 </tr>
                 <tr>
                     <th>No HP</th>
