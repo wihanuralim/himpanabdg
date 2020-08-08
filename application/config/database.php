@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'https://sismandona.000webhostapp.com/',
+	'hostname' => 'https://databases.000webhost.com/',
 	'username' => 'id14566836_root',
 	'password' => "$%<ZI0Uy9C$le2{&",
 	'database' => 'id14566836_himpanabdg',
