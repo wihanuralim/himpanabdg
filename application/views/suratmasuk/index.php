@@ -43,7 +43,8 @@
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('suratmasuk/detail/' . $sm->idsm); ?>">Detail</a>
                                             <a class="dropdown-item" href="<?= base_url('suratmasuk/edit/' . $sm->idsm); ?>">Ubah</a>
-                                            <a class="dropdown-item" href="<?= base_url('suratmasuk/hapus/' . $sm->idsm); ?>">Hapus</a>
+                                            <a onclick="deleteConfirm('<?= base_url('suratmasuk/hapus/' . $sm->idsm); ?>')" href="#" class="dropdown-item">Hapus</a>
+
                                         </div>
                                     </div>
                                 </td>
@@ -86,7 +87,7 @@
                 </div>
 
                 <div class="form-group">
-                     <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_surat" id="tgl_surat" required>
+                    <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_surat" id="tgl_surat" required>
                 </div>
 
                 <div class="form-group">

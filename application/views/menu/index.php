@@ -31,8 +31,8 @@
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $m['menu']; ?></td>
                             <td>
-                                <a href="" class="badge badge-success">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
+                                <a href="<?= base_url('menu/edit/') . $m['id']; ?>" class="badge badge-success">edit</a>
+                                <a onclick="deleteConfirm('<?= base_url('menu/delete/') . $m['id']; ?>')" href="#" class="badge badge-danger">delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>

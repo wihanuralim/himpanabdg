@@ -45,7 +45,7 @@
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('suratkeluar/detail/' . $sk->idsk); ?>">Detail</a>
                                             <a class="dropdown-item" href="<?= base_url('suratkeluar/edit/' . $sk->idsk); ?>">Ubah</a>
-                                            <a class="dropdown-item" href="<?= base_url('suratkeluar/hapus/' . $sk->idsk); ?>">Hapus</a>
+                                            <a onclick="deleteConfirm('<?= base_url('suratkeluar/hapus/' . $sk->idsk); ?>')" href="#" class="dropdown-item">Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -88,11 +88,11 @@
                 </div>
 
                 <div class="form-group">
-                     <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_surat" id="tgl_surat" required>
+                    <input data-provide="datepicker" placeholder="Tanggal Surat" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_surat" id="tgl_surat" required>
                 </div>
 
                 <div class="form-group">
-                     <input data-provide="datepicker" placeholder="Tanggal Kirim" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_kirim" id="tgl_kirim" required>
+                    <input data-provide="datepicker" placeholder="Tanggal Kirim" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_kirim" id="tgl_kirim" required>
                 </div>
 
                 <div class="form-group">

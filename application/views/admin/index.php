@@ -13,7 +13,7 @@
                 <div class="col-md-2">
                     <img src="<?= base_url('assets/img/utl/LOGO-HIMPANA.png'); ?>" class="card-img" weight="100px" style="padding : 10px; margin-left: 30px; width: 125px; height: 125px;" alt="...">
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="card-body">
                         <p class="card-text" style="text-align :justify">HIMPANA merupakan wadah para pensiunan Pertamina
                             yang didirikan pada tanggal 2 November 1985 melalui akte notaris no.73, Ny.Anna Sunarhadi SH dengan nama Perhimpunan Purna Karyawan Pertamina (HIMPANA) untuk waktu yang tidak ditentukan dan berkedudukan di Jakarta. Sejak November 2002, melalui Musyawarah Nasional, nama organisasi diubah menjadi Perhimpunan Pesiunan Pertamina (HIMPANA). HIMPANA di dirikan bertujuan untuk :</p>

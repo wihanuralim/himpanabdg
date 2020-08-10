@@ -20,6 +20,8 @@
                     <h5 class="card-title"><?= $user['name']; ?></h5>
                     <p class="card-text"><?= $user['email']; ?></p>
                     <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small></p>
+                    <br>
+                    <a type="button" class="btn-sm btn-secondary mt-5" href="<?= base_url('user/edit') ?>" style="margin-left: 280px;">Ubah</a>
                 </div>
             </div>
         </div>

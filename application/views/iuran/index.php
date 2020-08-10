@@ -44,7 +44,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('iuran/edit/' . $i->id); ?>">Ubah</a>
-                                            <a class="dropdown-item" href="<?= base_url('iuran/hapus/' . $i->id); ?>">Hapus</a>
+                                            <a onclick="deleteConfirm('<?= base_url('iuran/hapus/' . $i->id); ?>')" href="#" class="dropdown-item">Hapus</a>
                                             <a class="dropdown-item" href="<?= base_url('laporanpdf/kwitansi/' . $i->id); ?>">Kwitansi</a>
                                         </div>
                                     </div>

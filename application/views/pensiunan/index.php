@@ -43,7 +43,7 @@
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('pensiunan/detail/' . $p->id); ?>">Detail</a>
                                             <a class="dropdown-item" href="<?= base_url('pensiunan/edit/' . $p->id); ?>">Ubah</a>
-                                            <a class="dropdown-item" href="<?= base_url('pensiunan/hapus/' . $p->id); ?>">Hapus</a>
+                                            <a onclick="deleteConfirm('<?= base_url('pensiunan/hapus/' . $p->id); ?>')" href="#" class="dropdown-item">Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -86,10 +86,10 @@
                     <input data-provide="datepicker" placeholder="Tanggal Lahir" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_lahir" id="tgl_lahir" required>
                 </div>
                 <div class="form-group col-sm">
-                    <textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat lengkap" required ></textarea>
+                    <textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat lengkap" required></textarea>
                 </div>
                 <div class="form-group col-sm">
-                    <select name="kota_kab" id="kota_kab" class="form-control" placeholder="Kota/Kab" required >
+                    <select name="kota_kab" id="kota_kab" class="form-control" placeholder="Kota/Kab" required>
                         <option value="">Pilih Kota/Kab</option>
                         <option value="Bandung">Bandung</option>
                         <option value="Ciamis">Ciamis</option>
@@ -107,7 +107,7 @@
                     </select>
                 </div>
                 <div class="form-group col-sm">
-                     <input data-provide="datepicker" placeholder="Tanggal Pensiun" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_pensiun" id="tgl_pensiun" required>
+                    <input data-provide="datepicker" placeholder="Tanggal Pensiun" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_pensiun" id="tgl_pensiun" required>
                 </div>
                 <div class="form-group col-sm">
                     <input type="text" name="nohp" id="nohp" class="form-control" placeholder="Nomor Handphone">

@@ -44,7 +44,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <a class="dropdown-item" href="<?= base_url('pengeluaran/edit/' . $p->idp); ?>">Ubah</a>
-                                            <a class="dropdown-item" href="<?= base_url('pengeluaran/hapus/' . $p->idp); ?>">Hapus</a>
+                                            <a onclick="deleteConfirm('<?= base_url('pengeluaran/hapus/' . $p->idp); ?>')" href="#" class="dropdown-item">Hapus</a>
                                         </div>
                                     </div>
                                 </td>
@@ -74,8 +74,8 @@
 
                 <?php echo form_open_multipart('pengeluaran/tambah_aksi') ?>
 
-                 <div class="form-group col-sm">
-                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" placeholder="Kota/Kab" required >
+                <div class="form-group col-sm">
+                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control" placeholder="Kota/Kab" required>
                         <option value="">Metode Pembayaran</option>
                         <option value="Tunai">Tunai</option>
                         <option value="Transfer">Transfer</option>
@@ -88,7 +88,7 @@
                     <input data-provide="datepicker" placeholder="Tanggal Bayar" data-date-autoclose="true" class="form-control" data-date-format="dd-mm-yyyy" name="tgl_bayar" id="tgl_bayar" required>
                 </div>
                 <div class="form-group col-sm">
-                    <textarea name="detail" id="detail" class="form-control" placeholder="Untuk Pembayaran..." required ></textarea>
+                    <textarea name="detail" id="detail" class="form-control" placeholder="Untuk Pembayaran..." required></textarea>
                 </div>
                 <div class="form-group col-sm">
                     <input type="text" name="ket" id="ket" class="form-control" placeholder="Keterangan">
